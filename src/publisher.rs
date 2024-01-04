@@ -7,12 +7,12 @@ pub struct Publisher {
     /// string
     /// Exchange-specific publisher ID.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
+    pub id: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Publisher name (may be aliased at the publisher’s request).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    pub name: Option<std::borrow::Cow<'a, str>>,
 
     /// string array
     /// Array of IAB content categories that describe the publisher. Refer to List 5.1.
@@ -22,7 +22,7 @@ pub struct Publisher {
     /// string
     /// Highest level domain of the publisher (e.g., “publisher.com”).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub domain: Option<String>,
+    pub domain: Option<std::borrow::Cow<'a, str>>,
 
     /// object
     /// Placeholder for exchange-specific extensions to OpenRTB.

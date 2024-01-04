@@ -9,29 +9,29 @@ pub struct App {
     /// string; recommended
     /// Exchange-specific app ID.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
+    pub id: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// App name (may be aliased at the publisher’s request).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    pub name: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// A platform-specific application identifier intended to be unique to the app and independent
     /// of the exchange. On Android, this should be a bundle or package name (e.g.,
     /// com.foo.mygame). On iOS, it is typically a numeric ID.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub bundle: Option<String>,
+    pub bundle: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Domain of the app (e.g., “mygame.foo.com”).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub domain: Option<String>,
+    pub domain: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// App store URL for an installed app; for IQG 2.1 compliance.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub storeurl: Option<String>,
+    pub storeurl: Option<std::borrow::Cow<'a, str>>,
 
     /// string array
     /// Array of IAB content categories of the app. Refer to List 5.1.
@@ -53,7 +53,7 @@ pub struct App {
     /// string
     /// Application version.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub ver: Option<String>,
+    pub ver: Option<std::borrow::Cow<'a, str>>,
 
     /// integer
     /// Indicates if the app has a privacy policy, where 0 = no, 1 = yes.
@@ -86,7 +86,7 @@ pub struct App {
     /// string
     /// Comma separated list of keywords about the app.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub keywords: Option<String>,
+    pub keywords: Option<std::borrow::Cow<'a, str>>,
 
     /// object
     /// Placeholder for exchange-specific extensions to OpenRTB.

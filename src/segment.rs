@@ -8,17 +8,17 @@ pub struct Segment {
     /// string
     /// ID of the data segment specific to the data provider.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
+    pub id: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Name of the data segment specific to the data provider.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    pub name: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// String representation of the data segment value.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub value: Option<String>,
+    pub value: Option<std::borrow::Cow<'a, str>>,
 
     /// object
     /// Placeholder for exchange-specific extensions to OpenRTB.

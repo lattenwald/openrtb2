@@ -11,7 +11,7 @@ pub struct Content {
     /// string
     /// ID uniquely identifying the content.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
+    pub id: Option<std::borrow::Cow<'a, str>>,
 
     /// integer
     /// Episode number.
@@ -25,7 +25,7 @@ pub struct Content {
     /// Non-Video Example: “Why an Antarctic Glacier Is Melting So Quickly” (Time magazine
     /// article).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub title: Option<String>,
+    pub title: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Content series.
@@ -33,33 +33,33 @@ pub struct Content {
     /// (made for web).
     /// Non-Video Example: “Ecocentric” (Time Magazine blog).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub series: Option<String>,
+    pub series: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Content season (e.g., “Season 3”).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub season: Option<String>,
+    pub season: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Artist credited with the content.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub artist: Option<String>,
+    pub artist: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Genre that best describes the content (e.g., rock, pop, etc).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub genre: Option<String>,
+    pub genre: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Album to which the content belongs; typically for audio.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub album: Option<String>,
+    pub album: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// International Standard Recording Code conforming to ISO-3901.
     // TODO: ISO- 3901
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub isrc: Option<String>,
+    pub isrc: Option<std::borrow::Cow<'a, str>>,
 
     /// object
     /// Details about the content Producer (Section 3.2.17).
@@ -69,7 +69,7 @@ pub struct Content {
     /// string
     /// URL of the content, for buy-side contextualization or review.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub url: Option<String>,
+    pub url: Option<std::borrow::Cow<'a, str>>,
 
     /// string array
     /// Array of IAB content categories that describe the content producer. Refer to List 5.1.
@@ -95,12 +95,12 @@ pub struct Content {
     /// string
     /// Content rating (e.g., MPAA).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub contentrating: Option<String>,
+    pub contentrating: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// User rating of the content (e.g., number of stars, likes, etc.).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub userrating: Option<String>,
+    pub userrating: Option<std::borrow::Cow<'a, str>>,
 
     /// integer
     /// Media rating per IQG guidelines. Refer to List 5.19.
@@ -110,7 +110,7 @@ pub struct Content {
     /// string
     /// Comma separated list of keywords describing the content.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub keywords: Option<String>,
+    pub keywords: Option<std::borrow::Cow<'a, str>>,
 
     /// integer
     /// 0 = not live, 1 = content is live (e.g., stream, live blog).

@@ -9,12 +9,12 @@ pub struct Producer {
     /// Content producer or originator ID. Useful if content is syndicated and may be posted on a
     /// site using embed tags.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
+    pub id: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Content producer or originator name (e.g., “Warner Bros”).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    pub name: Option<std::borrow::Cow<'a, str>>,
 
     /// string array
     /// Array of IAB content categories that describe the content producer. Refer to List 5.1.
@@ -24,7 +24,7 @@ pub struct Producer {
     /// string
     /// Highest level domain of the content producer (e.g., “producer.com”).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub domain: Option<String>,
+    pub domain: Option<std::borrow::Cow<'a, str>>,
 
     /// object
     /// Placeholder for exchange-specific extensions to OpenRTB.

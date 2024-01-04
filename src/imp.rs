@@ -15,7 +15,7 @@ pub struct Imp {
     /// A unique identifier for this impression within the context of the bid request (typically,
     /// starts with 1 and increments.
     #[serde(borrow)]
-    pub id: String,
+    pub id: std::borrow::Cow<'a, str>,
 
     /// object array
     /// An array of Metric object (Section 3.2.5).
@@ -57,14 +57,14 @@ pub struct Imp {
     /// (typically video or mobile). Used by some ad servers to customize ad code by partner.
     /// Recommended for video and/or apps.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub displaymanager: Option<String>,
+    pub displaymanager: Option<std::borrow::Cow<'a, str>>,
 
     /// string
     /// Version of ad mediation partner, SDK technology, or player responsible for rendering ad
     /// (typically video or mobile). Used by some ad servers to customize ad code by partner.
     /// Recommended for video and/or apps.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub displaymanagerver: Option<String>,
+    pub displaymanagerver: Option<std::borrow::Cow<'a, str>>,
 
     /// integer; default 0
     /// 1 = the ad is interstitial or full screen, 0 = not interstitial.
@@ -79,7 +79,7 @@ pub struct Imp {
     /// Identifier for specific ad placement or ad tag that was used to initiate the auction. This
     /// can be useful for debugging of any issues, or for optimization by the buyer.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub tagid: Option<String>,
+    pub tagid: Option<std::borrow::Cow<'a, str>>,
 
     /// float; default 0
     /// Minimum bid for this impression expressed in CPM.
@@ -95,7 +95,7 @@ pub struct Imp {
         default,
         skip_serializing_if = "default_ext::DefaultExt::is_default"
     )]
-    pub bidfloorcur: String,
+    pub bidfloorcur: std::borrow::Cow<'a, str>,
 
     /// integer
     /// Indicates the type of browser opened upon clicking the creative in an app, where 0 =
@@ -122,7 +122,7 @@ pub struct Imp {
     /// string array
     /// Array of exchange-specific names of supported iframe busters.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub iframebuster: Option<Vec<String>>,
+    pub iframebuster: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// integer
     /// Advisory as to the number of seconds that may elapse between the auction and the actual

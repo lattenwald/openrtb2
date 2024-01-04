@@ -22,13 +22,13 @@ pub struct Source {
     /// Transaction ID that must be common across all participants in this bid request (e.g.,
     /// potentially multiple exchanges).
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub tid: Option<String>,
+    pub tid: Option<std::borrow::Cow<'a, str>>,
 
     /// string; recommended
     /// Payment ID chain string containing embedded syntax described in the TAG Payment ID Protocol
     /// v1.0.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub pchain: Option<String>,
+    pub pchain: Option<std::borrow::Cow<'a, str>>,
 
     /// object
     /// Placeholder for exchange-specific extensions to OpenRTB.

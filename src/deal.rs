@@ -8,7 +8,7 @@ pub struct Deal {
     /// string; required
     /// A unique identifier for the direct deal.
     #[serde(borrow)]
-    pub id: String,
+    pub id: std::borrow::Cow<'a, str>,
 
     /// float; default 0
     /// Minimum bid for this impression expressed in CPM.
@@ -24,7 +24,7 @@ pub struct Deal {
         default,
         skip_serializing_if = "default_ext::DefaultExt::is_default"
     )]
-    pub bidfloorcur: String,
+    pub bidfloorcur: std::borrow::Cow<'a, str>,
 
     /// integer
     /// Optional override of the overall auction type of the bid request, where 1 = First Price, 2
@@ -38,13 +38,13 @@ pub struct Deal {
     /// seats and the buyer’s customers to which they refer must be coordinated between bidders and
     /// the exchange a priori. Omission implies no seat restrictions.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub wseat: Option<Vec<String>>,
+    pub wseat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// string array
     /// Array of advertiser domains (e.g., advertiser.com) allowed to bid on this deal. Omission
     /// implies no advertiser restrictions.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub wadomain: Option<Vec<String>>,
+    pub wadomain: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// object
     /// Placeholder for exchange-specific extensions to OpenRTB.

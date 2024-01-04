@@ -20,13 +20,13 @@ pub struct Native {
     /// string; required
     /// Request payload complying with the Native Ad Specification.
     #[serde(borrow)]
-    pub request: String,
+    pub request: std::borrow::Cow<'a, str>,
 
     /// string; recommended
     /// Version of the Dynamic Native Ads API to which request complies; highly recommended for
     /// efficient parsing.
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
-    pub ver: Option<String>,
+    pub ver: Option<std::borrow::Cow<'a, str>>,
 
     /// integer array
     /// List of supported API frameworks for this impression. Refer to List 5.6. If an API is not
