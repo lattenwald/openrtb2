@@ -11,7 +11,7 @@
 /// request depending on whether the media is browser-based web content or a non-browser
 /// application, respectively.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct BidRequest {
+pub struct BidRequest<'a> {
     /// string; required
     /// Unique ID of the bid request, provided by the exchange.
     #[serde(borrow)]
@@ -21,23 +21,23 @@ pub struct BidRequest {
     /// Array of Imp objects (Section 3.2.4) representing the impressions offered. At least 1 Imp
     /// object is required.
     #[serde(borrow)]
-    pub imp: Vec<crate::Imp>,
+    pub imp: Vec<crate::Imp<'a>>,
 
     /// object; recommended
     #[serde(flatten, default, skip_serializing_if = "Option::is_none")]
-    pub channel: Option<crate::DistributionChannel>,
+    pub channel: Option<crate::DistributionChannel<'a>>,
 
     /// object; recommended
     /// Details via a Device object (Section 3.2.18) about the user’s device to which the
     /// impression will be delivered.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub device: Option<crate::Device>,
+    pub device: Option<crate::Device<'a>>,
 
     /// object; recommended
     /// Details via a User object (Section 3.2.20) about the human user of the device; the
     /// advertising audience.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub user: Option<crate::User>,
+    pub user: Option<crate::User<'a>>,
 
     /// integer; default 0
     /// Indicator of test mode in which auctions are not billable, where 0 = live mode, 1 = test
@@ -125,13 +125,13 @@ pub struct BidRequest {
     /// A Sorce object (Section 3.2.2) that provides data about the inventory source and which
     /// entity makes the final decision.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub source: Option<crate::Source>,
+    pub source: Option<crate::Source<'a>>,
 
     /// object
     /// A Regs object (Section 3.2.3) that specifies any industry, legal, or governmental
     /// regulations in force for this request.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub regs: Option<crate::Regs>,
+    pub regs: Option<crate::Regs<'a>>,
 
     /// object
     /// Placeholder for exchange-specific extensions to OpenRTB.

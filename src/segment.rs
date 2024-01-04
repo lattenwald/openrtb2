@@ -4,7 +4,7 @@
 /// Data object is a collection of such values from a given data provider. The specific segment
 /// names and value options must be published by the exchange a priori to its bidders.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Segment {
+pub struct Segment<'a> {
     /// string
     /// ID of the data segment specific to the data provider.
     #[serde(default, skip_serializing_if = "Option::is_none")]

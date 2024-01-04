@@ -11,7 +11,7 @@
 /// also be offered as banner, video, and/or native by also including as Imp subordinates objects of
 /// those types. However, any given bid for the impression must conform to one of the offered types.
 #[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
-pub struct Audio {
+pub struct Audio<'a> {
     /// string array; required
     /// Content MIME types supported (e.g., “audio/mp4”).
     #[serde(borrow)]
@@ -76,7 +76,7 @@ pub struct Audio {
     /// object array
     /// Array of Banner objects (Section 3.2.6) if companion ads are available.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub companionad: Option<Vec<crate::Banner>>,
+    pub companionad: Option<Vec<crate::Banner<'a>>>,
 
     /// integer array
     /// List of supported API frameworks for this impression. Refer to List 5.6. If an API is not

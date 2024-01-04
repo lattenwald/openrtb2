@@ -4,20 +4,20 @@
 /// [`App`]: ./struct.App.html
 #[derive(serde::Serialize, serde::Deserialize, Debug, PartialEq, Clone)]
 #[serde(rename_all = "snake_case")]
-pub enum DistributionChannel {
+pub enum DistributionChannel<'a> {
     /// object; recommended
     /// Details via a Site object (Section 3.2.13) about the publisher’s website. Only applicable
     /// and recommended for websites.
     #[serde(borrow)]
-    Site(crate::Site),
+    Site(crate::Site<'a>),
     /// object; recommended
     /// Details via an App object (Section 3.2.14) about the publisher’s app (i.e., non-browser
     /// applications). Only applicable and recommended for apps.
     #[serde(borrow)]
-    App(crate::App),
+    App(crate::App<'a>),
 }
 
-impl DistributionChannel {
+impl<'a> DistributionChannel<'a> {
     /// Returns true if the `DistributionChannel` is a Site. Returns false otherwise.
     ///
     /// ```
