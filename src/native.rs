@@ -19,6 +19,7 @@
 pub struct Native {
     /// string; required
     /// Request payload complying with the Native Ad Specification.
+    #[serde(borrow)]
     pub request: String,
 
     /// string; recommended

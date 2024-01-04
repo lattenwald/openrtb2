@@ -14,6 +14,7 @@
 pub struct Audio {
     /// string array; required
     /// Content MIME types supported (e.g., “audio/mp4”).
+    #[serde(borrow)]
     pub mimes: Vec<String>,
 
     /// integer; recommended
