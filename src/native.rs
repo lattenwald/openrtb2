@@ -24,7 +24,7 @@ pub struct Native {
     /// string; recommended
     /// Version of the Dynamic Native Ads API to which request complies; highly recommended for
     /// efficient parsing.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub ver: Option<String>,
 
     /// integer array

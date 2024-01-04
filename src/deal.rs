@@ -18,7 +18,11 @@ pub struct Deal {
     /// Currency specified using ISO-4217 alpha codes. This may be different from bid currency
     /// returned by bidder if this is allowed by the exchange.
     // TODO: ISO-4217 alpha
-    #[serde(default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
+    #[serde(
+        borrow,
+        default,
+        skip_serializing_if = "default_ext::DefaultExt::is_default"
+    )]
     pub bidfloorcur: String,
 
     /// integer
