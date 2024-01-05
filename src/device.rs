@@ -19,22 +19,14 @@ pub struct Device<'a> {
     /// integer; recommended
     /// Standard “Do Not Track” flag as set in the header by the browser, where 0 = tracking is
     /// unrestricted, 1 = do not track.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub dnt: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub dnt: Option<json_ext::Flag>,
 
     /// integer; recommended
     /// “Limit Ad Tracking” signal commercially endorsed (e.g., iOS, Android), where 0 = tracking
     /// is unrestricted, 1 = tracking must be limited per commercial guidelines.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub lmt: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub lmt: Option<json_ext::Flag>,
 
     /// string; recommended
     /// IPv4 address closest to device.
@@ -98,22 +90,14 @@ pub struct Device<'a> {
 
     /// integer
     /// Support for JavaScript, where 0 = no, 1 = yes.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub js: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub js: Option<json_ext::Flag>,
 
     /// integer
     /// Indicates if the geolocation API will be available to JavaScript code running in the
     /// banner, where 0 = no, 1 = yes.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub geofetch: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub geofetch: Option<json_ext::Flag>,
 
     /// string
     /// Version of Flash supported by the browser.
@@ -122,7 +106,6 @@ pub struct Device<'a> {
 
     /// string
     /// Browser language using ISO-639-1-alpha-2.
-    // TODO: ISO-639-1-alpha-2
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub language: Option<std::borrow::Cow<'a, str>>,
 

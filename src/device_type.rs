@@ -20,6 +20,14 @@ pub enum DeviceType {
     PersonalComputer,
     /// Connected TV
     ConnectedTv,
+    /// Phone
+    Phone,
+    /// Tablet
+    Tablet,
+    /// Connected Device
+    ConnectedDevice,
+    /// Set Top Box
+    SetTopBox,
 }
 
 #[cfg(test)]
