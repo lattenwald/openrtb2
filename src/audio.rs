@@ -103,12 +103,8 @@ pub struct Audio<'a> {
     /// integer
     /// Indicates if the ad is stitched with audio content or delivered independently, where 0 =
     /// no, 1 = yes.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub stitched: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub stitched: Option<json_ext::Flag>,
 
     /// integer
     /// Volume normalization mode. Refer to List 5.17.
