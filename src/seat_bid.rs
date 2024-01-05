@@ -20,12 +20,8 @@ pub struct SeatBid<'a> {
 
     /// integer; default 0
     /// 0 = impressions can be won individually; 1 = impressions must be won or lost as a group.
-    #[serde(
-        default,
-        skip_serializing_if = "default_ext::DefaultExt::is_default",
-        with = "crate::serde::i32_as_bool"
-    )]
-    pub group: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub group: Option<json_ext::Flag>,
 
     /// object
     /// Placeholder for bidder-specific extensions to OpenRTB.
