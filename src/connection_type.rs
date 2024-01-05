@@ -2,7 +2,7 @@
 ///
 /// The following table lists the various options for the type of device connectivity.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum ConnectionType {
     /// Unknown
     Unknown = 0,

@@ -5,7 +5,7 @@
 /// from the Inventory Quality Guidelines (IQG). Practitioners should keep in sync with updates to
 /// the IQG values.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum ContentContext {
     /// Video (i.e., video file or stream such as Internet TV broadcasts)
     Video = 1,

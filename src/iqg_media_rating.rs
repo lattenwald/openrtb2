@@ -3,7 +3,7 @@
 /// The following table lists the media ratings used in describing content based on the IQG 2.1
 /// categorization. Refer to www.iab.com/guidelines/digital-video-suite for more information.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum IqgMediaRating {
     /// All Audiences
     AllAudiences = 1,

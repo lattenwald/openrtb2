@@ -3,7 +3,7 @@
 /// The following table lists the directions in which an expandable ad may expand, given the
 /// positioning of the ad unit on the page and constraints imposed by the content.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum ExpandableDirection {
     /// Left
     Left = 1,

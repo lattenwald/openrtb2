@@ -7,7 +7,7 @@
 /// Practitioners should keep in sync with updates to the IQG values as published on IAB.com. Values
 /// “4” - “7” apply to apps per the mobile addendum to IQG version 2.1.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum AdPosition {
     /// Unknown
     Unknown = 0,

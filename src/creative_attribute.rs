@@ -4,7 +4,7 @@
 /// being served or serve as restrictions of thereof.
 #[allow(non_camel_case_types)]
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum CreativeAttribute {
     /// Audio Ad (Auto-Play)
     AudioAd_AutoPlay = 1,

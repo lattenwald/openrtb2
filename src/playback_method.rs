@@ -2,7 +2,7 @@
 ///
 /// The following table lists the various playback methods.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum PlaybackMethod {
     /// Initiates on Page Load with Sound On
     AutoPlaySoundOn = 1,

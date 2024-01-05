@@ -3,7 +3,7 @@
 /// The following table lists the various types of video placements derived largely from the IAB
 /// Digital Video Guidelines.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum VideoPlacementType {
     /// In-Stream
     /// Played before, during or after the streaming video content that the consumer has requested

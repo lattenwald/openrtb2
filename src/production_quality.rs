@@ -3,7 +3,7 @@
 /// The following table lists the options for content quality. These values are defined by the IAB;
 /// refer to www.iab.com/wp-content/uploads/2015/03/long-form-video-final.pdf for more information.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum ProductionQuality {
     /// Unknown
     Unknown = 0,

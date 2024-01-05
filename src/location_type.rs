@@ -2,7 +2,7 @@
 ///
 /// The following table lists the options to indicate how the geographic information was determined.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum LocationType {
     /// GPS/Location Services
     GpsLocation = 1,

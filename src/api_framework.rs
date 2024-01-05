@@ -2,7 +2,7 @@
 ///
 /// The following table is a list of API frameworks supported by the publisher.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum ApiFramework {
     /// VPAID 1.0
     Vpaid1 = 1,

@@ -3,7 +3,7 @@
 /// The following table lists the options for a bidder to signal the exchange as to why it did not
 /// offer a bid for the impression.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum NoBidReason {
     /// Unknown Error
     UnknownError = 0,

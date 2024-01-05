@@ -4,7 +4,7 @@
 /// apply to video and audio ads. This table is derived from VAST 2.0+ and DAAST 1.0 specifications.
 /// Refer to www.iab.com/guidelines/digital-video-suite for more information.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum CompanionType {
     /// Static Resource
     Static = 1,

@@ -11,7 +11,7 @@
 /// This OpenRTB table has values derived from the Inventory Quality Guidelines (IQG). Practitioners
 /// should keep in sync with updates to the IQG values.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum DeviceType {
     /// Mobile/Tablet
     #[deprecated(since = "0.1.0", note = "Please use the Phone or Tablet variant instead")]

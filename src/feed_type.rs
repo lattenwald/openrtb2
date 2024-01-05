@@ -2,7 +2,7 @@
 ///
 /// The following table lists the types of feeds, typically for audio.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum FeedType {
     /// Music Service
     MusicService = 1,

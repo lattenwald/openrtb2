@@ -3,7 +3,7 @@
 /// The following table lists the services and/or vendors used for resolving IP addresses to
 /// geolocations.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum IpLocationService {
     /// ip2location
     Ip2Location = 1,

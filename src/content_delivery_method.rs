@@ -2,7 +2,7 @@
 ///
 /// The following table lists the various options for the delivery of video or audio content.
 #[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
-#[repr(i32)]
+#[repr(i8)]
 pub enum ContentDeliveryMethod {
     /// Streaming
     Streaming = 1,
