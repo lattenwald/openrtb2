@@ -42,18 +42,14 @@ pub struct BidRequest<'a> {
     /// integer; default 0
     /// Indicator of test mode in which auctions are not billable, where 0 = live mode, 1 = test
     /// mode.
-    #[serde(
-        default,
-        skip_serializing_if = "default_ext::DefaultExt::is_default",
-        with = "crate::serde::i32_as_bool"
-    )]
-    pub test: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub test: Option<json_ext::Flag>,
 
     /// integer; default 2
     /// Auction type, where 1 = First Price, 2 = Second Price Plus. Exchange-specific auction types
     /// can be defined using values greater than 500.
-    #[serde(default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
-    pub at: crate::AuctionType,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub at: Option<crate::AuctionType>,
 
     /// integer
     /// Maximum time in milliseconds the exchange allows for bids to be received including Internet
@@ -82,17 +78,12 @@ pub struct BidRequest<'a> {
     /// impressions available in context (e.g., all on the web page, all video spots such as
     /// pre/mid/post roll) to support road-blocking. 0 = no or unknown, 1 = yes, the impressions
     /// offered represent all that are available.
-    #[serde(
-        default,
-        skip_serializing_if = "default_ext::DefaultExt::is_default",
-        with = "crate::serde::i32_as_bool"
-    )]
-    pub allimps: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub allimps: Option<json_ext::Flag>,
 
     /// string array
     /// Array of allowed currencies for bids on this bid request using ISO-4217 alpha codes.
     /// Recommended only if the exchange accepts multiple currencies.
-    // TODO: ISO-4217 alpha
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub cur: Option<Vec<std::borrow::Cow<'a, str>>>,
 
@@ -100,17 +91,16 @@ pub struct BidRequest<'a> {
     /// White list of languages for creatives using ISO-639-1-alpha-2. Omission implies no specific
     /// restrictions, but buyers would be advised to consider language attribute in the Device
     /// and/or Content objects if available.
-    // TODO: ISO-639-1-alpha-2
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub wlang: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// string array
     /// Blocked advertiser categories using the IAB content categories. Refer to List 5.1.
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub bcat: Option<Vec<crate::ContentCategory>>,
+    pub bcat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// string array
-    /// Block list of advertisers by their domains (e.g., “ford.com”).
+    /// Block list of advertisers by their domains (e.g., "ford.com").
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub badv: Option<Vec<std::borrow::Cow<'a, str>>>,
 
