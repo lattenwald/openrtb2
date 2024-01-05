@@ -11,12 +11,8 @@ pub struct Source<'a> {
     /// integer; recommended
     /// Entity responsible for the final impression sale decision, where 0 = exchange, 1 = upstream
     /// source.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub fd: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub fd: Option<SaleDecision>,
 
     /// string; recommended
     /// Transaction ID that must be common across all participants in this bid request (e.g.,
@@ -34,6 +30,15 @@ pub struct Source<'a> {
     /// Placeholder for exchange-specific extensions to OpenRTB.
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<json_ext::Object<'a>>,
+}
+
+#[derive(
+    serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy,
+)]
+#[repr(i8)]
+pub enum SaleDecision {
+    Exchange,
+    Upstream,
 }
 
 #[cfg(test)]

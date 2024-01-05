@@ -10,7 +10,7 @@
 /// offered as a video type impression. At the publisher’s discretion, that same impression may also
 /// be offered as banner, audio, and/or native by also including as Imp subordinates objects of
 /// those types. However, any given bid for the impression must conform to one of the offered types.
-#[derive(serde::Serialize, serde::Deserialize, Debug, PartialEq, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
 pub struct Video<'a> {
     /// string array; required
     /// Content MIME types supported (e.g., “video/x-ms-wmv”, “video/mp4”).
@@ -64,24 +64,20 @@ pub struct Video<'a> {
     /// Indicates if the player will allow the video to be skipped, where 0 = no, 1 = yes.
     /// If a bidder sends markup/creative that is itself skippable, the Bid object should include
     /// the attr array with an element of 16 indicating skippable video. Refer to List 5.3.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub skip: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub skip: Option<json_ext::Flag>,
 
     /// integer; default 0
     /// Videos of total duration greater than this number of seconds can be skippable; only
     /// applicable if the ad is skippable.
-    #[serde(default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
-    pub skipmin: i32,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub skipmin: Option<i32>,
 
     /// integer; default 0
     /// Number of seconds a video must play before skipping is enabled; only applicable if the ad
     /// is skippable.
-    #[serde(default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
-    pub skipafter: i32,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub skipafter: Option<i32>,
 
     /// integer
     /// If multiple ad impressions are offered in the same bid request, the sequence number will
@@ -99,8 +95,8 @@ pub struct Video<'a> {
     /// allowed. If -1, extension is allowed, and there is no time limit imposed. If greater than
     /// 0, then the value represents the number of seconds of extended play supported beyond the
     /// maxduration value.
-    #[serde(default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
-    pub maxextended: crate::MaxExtendedAdDuration,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub maxextended: Option<crate::MaxExtendedAdDuration>,
 
     /// integer
     /// Minimum bit rate in Kbps.
@@ -115,12 +111,8 @@ pub struct Video<'a> {
     /// integer; default 1
     /// Indicates if letter-boxing of 4:3 content into a 16:9 window is allowed, where 0 = no, 1 =
     /// yes.
-    #[serde(
-        default = "default_boxingallowed",
-        skip_serializing_if = "is_default_boxingallowed",
-        with = "crate::serde::i32_as_bool"
-    )]
-    pub boxingallowed: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub boxingallowed: Option<json_ext::Flag>,
 
     /// integer array
     /// Playback methods that may be in use. If none are specified, any method may be used. Refer
@@ -169,47 +161,6 @@ pub struct Video<'a> {
     /// Placeholder for exchange-specific extensions to OpenRTB.
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<json_ext::Object<'a>>,
-}
-
-impl<'a> Default for Video<'a> {
-    fn default() -> Self {
-        Self {
-            mimes: Default::default(),
-            minduration: Default::default(),
-            maxduration: Default::default(),
-            protocols: Default::default(),
-            w: Default::default(),
-            h: Default::default(),
-            startdelay: Default::default(),
-            placement: Default::default(),
-            linearity: Default::default(),
-            skip: Default::default(),
-            skipmin: Default::default(),
-            skipafter: Default::default(),
-            sequence: Default::default(),
-            battr: Default::default(),
-            maxextended: Default::default(),
-            minbitrate: Default::default(),
-            maxbitrate: Default::default(),
-            boxingallowed: default_boxingallowed(),
-            playbackmethod: Default::default(),
-            playbackend: Default::default(),
-            delivery: Default::default(),
-            pos: Default::default(),
-            companionad: Default::default(),
-            api: Default::default(),
-            companiontype: Default::default(),
-            ext: Default::default(),
-        }
-    }
-}
-
-fn default_boxingallowed() -> bool {
-    true
-}
-
-fn is_default_boxingallowed(v: &bool) -> bool {
-    *v == default_boxingallowed()
 }
 
 #[cfg(test)]

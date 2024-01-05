@@ -18,7 +18,6 @@ pub struct Deal<'a> {
     /// string; default ”USD”
     /// Currency specified using ISO-4217 alpha codes. This may be different from bid currency
     /// returned by bidder if this is allowed by the exchange.
-    // TODO: ISO-4217 alpha
     #[serde(
         borrow,
         default,
@@ -30,8 +29,8 @@ pub struct Deal<'a> {
     /// Optional override of the overall auction type of the bid request, where 1 = First Price, 2
     /// = Second Price Plus, 3 = the value passed in bidfloor is the agreed upon deal price.
     /// Additional auction types can be defined by the exchange.
-    #[serde(default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
-    pub at: crate::AuctionType,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub at: Option<crate::AuctionType>,
 
     /// string array
     /// Whitelist of buyer seats (e.g., advertisers, agencies) allowed to bid on this deal. IDs of

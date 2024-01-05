@@ -9,12 +9,8 @@ pub struct Regs<'a> {
     /// integer
     /// Flag indicating if this request is subject to the COPPA regulations established by the USA
     /// FTC, where 0 = no, 1 = yes. Refer to Section 7.5 for more information.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub coppa: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub coppa: Option<json_ext::Flag>,
 
     /// object
     /// Placeholder for exchange-specific extensions to OpenRTB.

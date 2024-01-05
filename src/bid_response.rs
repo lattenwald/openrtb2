@@ -28,12 +28,7 @@ pub struct BidResponse<'a> {
 
     /// string; default “USD”
     /// Bid currency using ISO-4217 alpha codes.
-    // TODO: ISO-4217 alpha
-    #[serde(
-        borrow,
-        default,
-        skip_serializing_if = "default_ext::DefaultExt::is_default"
-    )]
+    #[serde(borrow, default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
     pub cur: std::borrow::Cow<'a, str>,
 
     /// string
