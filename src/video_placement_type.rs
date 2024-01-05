@@ -1,10 +1,8 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.9 Video Placement Types
 ///
 /// The following table lists the various types of video placements derived largely from the IAB
 /// Digital Video Guidelines.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum VideoPlacementType {
     /// In-Stream
@@ -40,10 +38,7 @@ mod test {
 
         let json = "[1,2]";
         let e1: Vec<VideoPlacementType> = serde_json::from_str(json)?;
-        assert_eq!(
-            e1,
-            vec![VideoPlacementType::InStream, VideoPlacementType::InBanner]
-        );
+        assert_eq!(e1, vec![VideoPlacementType::InStream, VideoPlacementType::InBanner]);
         assert_eq!(serde_json::to_string(&e1)?, json);
 
         Ok(())

@@ -1,9 +1,7 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.17 Volume Normalization Modes
 ///
 /// The following table lists the types of volume normalization modes, typically for audio.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum VolumeNormalizationMode {
     /// None

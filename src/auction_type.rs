@@ -23,12 +23,11 @@ impl serde::Serialize for AuctionType {
     where
         S: serde::Serializer,
     {
-        let v = match self {
+        serializer.serialize_i32(match self {
             Self::FirstPrice => 1,
             Self::SecondPricePlus => 2,
-            Self::ExchangeSpecific(v) => *v,
-        };
-        serializer.serialize_i32(v)
+            Self::ExchangeSpecific(value) => *value,
+        })
     }
 }
 
@@ -37,16 +36,15 @@ impl<'de> serde::Deserialize<'de> for AuctionType {
     where
         D: serde::Deserializer<'de>,
     {
-        let v = match i32::deserialize(deserializer)? {
-            1 => Self::FirstPrice,
-            2 => Self::SecondPricePlus,
-            v if v > 500 => Self::ExchangeSpecific(v),
-            v => {
-                let s = format!("invalid value: {}, expected 1 or 2 or greater than 500", v);
-                return Err(serde::de::Error::custom(s));
-            }
-        };
-        Ok(v)
+        match i32::deserialize(deserializer)? {
+            1 => Ok(Self::FirstPrice),
+            2 => Ok(Self::SecondPricePlus),
+            value if value > 500 => Ok(Self::ExchangeSpecific(value)),
+            value => Err(serde::de::Error::custom(format!(
+                "invalid value: {}, expected 1 or 2 or greater than 500",
+                value
+            ))),
+        }
     }
 }
 

@@ -1,9 +1,7 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.10 Playback Methods
 ///
 /// The following table lists the various playback methods.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum PlaybackMethod {
     /// Initiates on Page Load with Sound On
@@ -32,10 +30,7 @@ mod test {
         let e1: Vec<PlaybackMethod> = serde_json::from_str(json)?;
         assert_eq!(
             e1,
-            vec![
-                PlaybackMethod::AutoPlaySoundOn,
-                PlaybackMethod::AutoPlaySoundOff
-            ]
+            vec![PlaybackMethod::AutoPlaySoundOn, PlaybackMethod::AutoPlaySoundOff]
         );
         assert_eq!(serde_json::to_string(&e1)?, json);
 

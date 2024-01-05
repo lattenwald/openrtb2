@@ -13,23 +13,16 @@ pub enum MaxExtendedAdDuration {
     Specific(i32),
 }
 
-impl Default for MaxExtendedAdDuration {
-    fn default() -> Self {
-        Self::NotAllowed
-    }
-}
-
 impl serde::Serialize for MaxExtendedAdDuration {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer,
     {
-        let v = match self {
+        serializer.serialize_i32(match self {
             Self::NoLimit => -1,
             Self::NotAllowed => 0,
-            Self::Specific(v) => *v,
-        };
-        serializer.serialize_i32(v)
+            Self::Specific(value) => *value,
+        })
     }
 }
 
@@ -38,16 +31,15 @@ impl<'de> serde::Deserialize<'de> for MaxExtendedAdDuration {
     where
         D: serde::Deserializer<'de>,
     {
-        let v = match i32::deserialize(deserializer)? {
-            -1 => Self::NoLimit,
-            0 => Self::NotAllowed,
-            v if v > 0 => Self::Specific(v),
-            v => {
-                let s = format!("invalid value: {}, expected -1 or 0 or greater than 0", v);
-                return Err(serde::de::Error::custom(s));
-            }
-        };
-        Ok(v)
+        match i32::deserialize(deserializer)? {
+            -1 => Ok(Self::NoLimit),
+            0 => Ok(Self::NotAllowed),
+            value if value > 0 => Ok(Self::Specific(value)),
+            value => Err(serde::de::Error::custom(format!(
+                "invalid value: {}, expected -1 or 0 or greater than 0",
+                value
+            ))),
+        }
     }
 }
 

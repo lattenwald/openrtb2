@@ -12,18 +12,14 @@ pub struct Deal<'a> {
 
     /// float; default 0
     /// Minimum bid for this impression expressed in CPM.
-    #[serde(default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
-    pub bidfloor: f64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub bidfloor: Option<f64>,
 
     /// string; default ”USD”
     /// Currency specified using ISO-4217 alpha codes. This may be different from bid currency
     /// returned by bidder if this is allowed by the exchange.
-    #[serde(
-        borrow,
-        default,
-        skip_serializing_if = "default_ext::DefaultExt::is_default"
-    )]
-    pub bidfloorcur: std::borrow::Cow<'a, str>,
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    pub bidfloorcur: Option<std::borrow::Cow<'a, str>>,
 
     /// integer
     /// Optional override of the overall auction type of the bid request, where 1 = First Price, 2

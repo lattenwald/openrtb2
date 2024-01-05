@@ -1,11 +1,9 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.3 Creative Attributes
 ///
 /// The following table specifies a standard list of creative attributes that can describe an ad
 /// being served or serve as restrictions of thereof.
 #[allow(non_camel_case_types)]
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum CreativeAttribute {
     /// Audio Ad (Auto-Play)
