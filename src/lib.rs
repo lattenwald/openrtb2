@@ -221,7 +221,3 @@ pub use gender::*;
 
 mod max_extended_ad_duration;
 pub use max_extended_ad_duration::*;
-
-// ===== internal =====
-
-mod serde;
