@@ -12,12 +12,6 @@ pub enum AuctionType {
     ExchangeSpecific(i32),
 }
 
-impl Default for AuctionType {
-    fn default() -> Self {
-        Self::SecondPricePlus
-    }
-}
-
 impl serde::Serialize for AuctionType {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where

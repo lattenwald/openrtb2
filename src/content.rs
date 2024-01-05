@@ -57,7 +57,6 @@ pub struct Content<'a> {
 
     /// string
     /// International Standard Recording Code conforming to ISO-3901.
-    // TODO: ISO- 3901
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub isrc: Option<std::borrow::Cow<'a, str>>,
 
@@ -114,21 +113,13 @@ pub struct Content<'a> {
 
     /// integer
     /// 0 = not live, 1 = content is live (e.g., stream, live blog).
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub livestream: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub livestream: Option<json_ext::Flag>,
 
     /// integer
     /// 0 = indirect, 1 = direct.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub sourcerelationship: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub sourcerelationship: Option<SourceRelationship>,
 
     /// integer
     /// Length of content in seconds; appropriate for video or audio.
@@ -137,19 +128,14 @@ pub struct Content<'a> {
 
     /// string
     /// Content language using ISO-639-1-alpha-2.
-    // TODO: ISO-639-1-alpha-2
     #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub language: Option<i32>,
+    pub language: Option<std::borrow::Cow<'a, str>>,
 
     /// integer
     /// Indicator of whether or not the content is embeddable (e.g., an embeddable video player),
     /// where 0 = no, 1 = yes.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub embeddable: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub embeddable: Option<json_ext::Flag>,
 
     /// object array
     /// Additional content data. Each Data object (Section 3.2.21) represents a different data
@@ -161,6 +147,13 @@ pub struct Content<'a> {
     /// Placeholder for exchange-specific extensions to OpenRTB.
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub ext: Option<json_ext::Object<'a>>,
+}
+
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[repr(i8)]
+pub enum SourceRelationship {
+    Indirect,
+    Direct,
 }
 
 #[cfg(test)]

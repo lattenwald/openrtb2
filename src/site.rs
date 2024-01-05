@@ -55,21 +55,13 @@ pub struct Site<'a> {
     /// integer
     /// Indicates if the site has been programmed to optimize layout when viewed on mobile devices,
     /// where 0 = no, 1 = yes.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub mobile: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub mobile: Option<json_ext::Flag>,
 
     /// integer
     /// Indicates if the site has a privacy policy, where 0 = no, 1 = yes.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub privacypolicy: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub privacypolicy: Option<json_ext::Flag>,
 
     /// object
     /// Details about the Publisher (Section 3.2.15) of the site.
