@@ -108,10 +108,6 @@ pub use bid::*;
 
 // ===== 5 enum =====
 
-// 5.1
-mod content_category;
-pub use content_category::*;
-
 // 5.2
 mod banner_ad_type;
 pub use banner_ad_type::*;
