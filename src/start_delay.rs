@@ -1,5 +1,3 @@
-use serde::{Deserialize, Serialize};
-
 /// 5.12 Start Delay
 ///
 /// The following table lists the various options for the video or audio start delay. If the start
@@ -17,40 +15,35 @@ pub enum StartDelay {
     GenericPostRoll,
 }
 
-impl Serialize for StartDelay {
+impl serde::Serialize for StartDelay {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: serde::Serializer,
     {
-        let v = match self {
-            StartDelay::MidRoll(v) => *v,
+        serializer.serialize_i32(match self {
+            StartDelay::MidRoll(value) => *value,
             StartDelay::PreRoll => 0,
             StartDelay::GenericMidRoll => -1,
             StartDelay::GenericPostRoll => -2,
-        };
-        serializer.serialize_i32(v)
+        })
     }
 }
 
-impl<'de> Deserialize<'de> for StartDelay {
+impl<'de> serde::Deserialize<'de> for StartDelay {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: serde::Deserializer<'de>,
     {
-        let v = match i32::deserialize(deserializer)? {
-            v if v > 0 => StartDelay::MidRoll(v),
-            0 => StartDelay::PreRoll,
-            -1 => StartDelay::GenericMidRoll,
-            -2 => StartDelay::GenericPostRoll,
-            v => {
-                let s = format!(
-                    "invalid value: {}, expected 0 or -1 or -2 or greater than 0",
-                    v
-                );
-                return Err(serde::de::Error::custom(s));
-            }
-        };
-        Ok(v)
+        match i32::deserialize(deserializer)? {
+            value if value > 0 => Ok(StartDelay::MidRoll(value)),
+            0 => Ok(StartDelay::PreRoll),
+            -1 => Ok(StartDelay::GenericMidRoll),
+            -2 => Ok(StartDelay::GenericPostRoll),
+            value => Err(serde::de::Error::custom(format!(
+                "invalid value: {}, expected 0 or -1 or -2 or greater than 0",
+                value
+            ))),
+        }
     }
 }
 

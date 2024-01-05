@@ -1,9 +1,7 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.22 Connection Type
 ///
 /// The following table lists the various options for the type of device connectivity.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum ConnectionType {
     /// Unknown

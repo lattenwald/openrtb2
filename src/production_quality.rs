@@ -25,10 +25,7 @@ mod test {
 
         let json = "[0,1]";
         let e1: Vec<ProductionQuality> = serde_json::from_str(json)?;
-        assert_eq!(
-            e1,
-            vec![ProductionQuality::Unknown, ProductionQuality::Professional]
-        );
+        assert_eq!(e1, vec![ProductionQuality::Unknown, ProductionQuality::Professional]);
         assert_eq!(serde_json::to_string(&e1)?, json);
 
         Ok(())

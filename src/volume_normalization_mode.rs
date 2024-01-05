@@ -28,10 +28,7 @@ mod test {
         let e1: Vec<VolumeNormalizationMode> = serde_json::from_str(json)?;
         assert_eq!(
             e1,
-            vec![
-                VolumeNormalizationMode::None,
-                VolumeNormalizationMode::AverageVolume,
-            ]
+            vec![VolumeNormalizationMode::None, VolumeNormalizationMode::AverageVolume,]
         );
         assert_eq!(serde_json::to_string(&e1)?, json);
 

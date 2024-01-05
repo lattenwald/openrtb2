@@ -32,9 +32,7 @@ pub struct Source<'a> {
     pub ext: Option<json_ext::Object<'a>>,
 }
 
-#[derive(
-    serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy,
-)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i8)]
 pub enum SaleDecision {
     Exchange,

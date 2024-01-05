@@ -1,5 +1,3 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.7 Video Linearity
 ///
 /// The following table indicates the options for video linearity. “In-stream” or “linear” video
@@ -9,7 +7,7 @@ use serde_repr::{Deserialize_repr, Serialize_repr};
 ///
 /// This OpenRTB table has values derived from the Inventory Quality Guidelines (IQG). Practitioners
 /// should keep in sync with updates to the IQG values.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum VideoLinearity {
     /// Linear / In-Stream

@@ -68,12 +68,8 @@ pub struct Imp<'a> {
 
     /// integer; default 0
     /// 1 = the ad is interstitial or full screen, 0 = not interstitial.
-    #[serde(
-        default,
-        skip_serializing_if = "default_ext::DefaultExt::is_default",
-        with = "crate::serde::i32_as_bool"
-    )]
-    pub instl: bool,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub instl: Option<json_ext::Flag>,
 
     /// string
     /// Identifier for specific ad placement or ad tag that was used to initiate the auction. This
@@ -83,41 +79,28 @@ pub struct Imp<'a> {
 
     /// float; default 0
     /// Minimum bid for this impression expressed in CPM.
-    #[serde(default, skip_serializing_if = "default_ext::DefaultExt::is_default")]
-    pub bidfloor: f64,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub bidfloor: Option<f64>,
 
     /// string; default “USD”
     /// Currency specified using ISO-4217 alpha codes. This may be different from bid currency
     /// returned by bidder if this is allowed by the exchange.
-    // TODO: ISO-4217 alpha
-    #[serde(
-        borrow,
-        default,
-        skip_serializing_if = "default_ext::DefaultExt::is_default"
-    )]
-    pub bidfloorcur: std::borrow::Cow<'a, str>,
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    pub bidfloorcur: Option<std::borrow::Cow<'a, str>>,
 
     /// integer
     /// Indicates the type of browser opened upon clicking the creative in an app, where 0 =
     /// embedded, 1 = native. Note that the Safari View Controller in iOS 9.x devices is considered
     /// a native browser for purposes of this attribute.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub clickbrowser: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub clickbrowser: Option<json_ext::Flag>,
 
     /// integer
     /// Flag to indicate if the impression requires secure HTTPS URL creative assets and markup,
     /// where 0 = non-secure, 1 = secure. If omitted, the secure state is unknown, but non-secure
     /// HTTP support can be assumed.
-    #[serde(
-        default,
-        skip_serializing_if = "Option::is_none",
-        with = "crate::serde::i32_as_opt_bool"
-    )]
-    pub secure: Option<bool>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub secure: Option<json_ext::Flag>,
 
     /// string array
     /// Array of exchange-specific names of supported iframe busters.

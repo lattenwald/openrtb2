@@ -10,10 +10,7 @@ macro_rules! test_json {
     };
 }
 
-test_json!(
-    ad_served_on_win_notice,
-    "json/6.4.1_ad_served_on_win_notice.json"
-);
+test_json!(ad_served_on_win_notice, "json/6.4.1_ad_served_on_win_notice.json");
 test_json!(
     vast_xml_document_returned_inline,
     "json/6.4.2_vast_xml_document_returned_inline.json"

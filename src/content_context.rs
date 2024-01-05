@@ -1,12 +1,10 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.18 Content Context
 ///
 /// The following table lists the various options for indicating the type of content being used or
 /// consumed by the user in which the impression will appear. This OpenRTB table has values derived
 /// from the Inventory Quality Guidelines (IQG). Practitioners should keep in sync with updates to
 /// the IQG values.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum ContentContext {
     /// Video (i.e., video file or stream such as Internet TV broadcasts)

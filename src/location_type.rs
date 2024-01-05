@@ -1,9 +1,7 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.20 Location Type
 ///
 /// The following table lists the options to indicate how the geographic information was determined.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum LocationType {
     /// GPS/Location Services

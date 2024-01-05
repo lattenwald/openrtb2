@@ -1,11 +1,9 @@
-use serde::{Deserialize, Serialize};
-
 /// 3.2.18 Object: Device
 ///
 /// This object provides information pertaining to the device through which the user is interacting.
 /// Device information includes its hardware, platform, location, and carrier data. The device can
 /// refer to a mobile handset, a desktop computer, set top box, or other digital device.
-#[derive(Serialize, Deserialize, Default, Debug, PartialEq, Clone)]
+#[derive(serde::Serialize, serde::Deserialize, Default, Debug, PartialEq, Clone)]
 pub struct Device<'a> {
     /// string; recommended
     /// Browser user agent string.

@@ -1,10 +1,8 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.2 Banner Ad Types
 ///
 /// The following table indicates the types of ads that can be accepted by the exchange unless
 /// restricted by publisher site settings.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum BannerAdType {
     /// XHTML Text Ad (usually mobile)

@@ -1,10 +1,8 @@
-use serde_repr::{Deserialize_repr, Serialize_repr};
-
 /// 5.24 No-Bid Reason Codes
 ///
 /// The following table lists the options for a bidder to signal the exchange as to why it did not
 /// offer a bid for the impression.
-#[derive(Serialize_repr, Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
+#[derive(serde_repr::Serialize_repr, serde_repr::Deserialize_repr, Debug, PartialEq, Eq, Clone, Copy)]
 #[repr(i32)]
 pub enum NoBidReason {
     /// Unknown Error
@@ -41,10 +39,7 @@ mod test {
 
         let json = "[0,1]";
         let e1: Vec<NoBidReason> = serde_json::from_str(json)?;
-        assert_eq!(
-            e1,
-            vec![NoBidReason::UnknownError, NoBidReason::TechnicalError]
-        );
+        assert_eq!(e1, vec![NoBidReason::UnknownError, NoBidReason::TechnicalError]);
         assert_eq!(serde_json::to_string(&e1)?, json);
 
         Ok(())
