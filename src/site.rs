@@ -22,20 +22,20 @@ pub struct Site<'a> {
 
     /// string array
     /// Array of IAB content categories of the site. Refer to List 5.1.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub cat: Option<Vec<crate::ContentCategory>>,
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    pub cat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// string array
     /// Array of IAB content categories that describe the current section of the site. Refer to
     /// List 5.1.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub sectioncat: Option<Vec<crate::ContentCategory>>,
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    pub sectioncat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// string array
     /// Array of IAB content categories that describe the current page or view of the site. Refer
     /// to List 5.1.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub pagecat: Option<Vec<crate::ContentCategory>>,
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    pub pagecat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// string
     /// URL of the page where the impression will be shown.

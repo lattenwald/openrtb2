@@ -96,7 +96,7 @@ pub struct BidRequest<'a> {
 
     /// string array
     /// Blocked advertiser categories using the IAB content categories. Refer to List 5.1.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub bcat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// string array

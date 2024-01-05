@@ -16,8 +16,8 @@ pub struct Publisher<'a> {
 
     /// string array
     /// Array of IAB content categories that describe the publisher. Refer to List 5.1.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub cat: Option<Vec<crate::ContentCategory>>,
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    pub cat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// string
     /// Highest level domain of the publisher (e.g., “publisher.com”).

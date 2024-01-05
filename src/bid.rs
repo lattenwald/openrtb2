@@ -93,8 +93,8 @@ pub struct Bid<'a> {
 
     /// string array
     /// IAB content categories of the creative. Refer to List 5.1.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub cat: Option<Vec<crate::ContentCategory>>,
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    pub cat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// integer array
     /// Set of attributes describing the creative. Refer to List 5.3.

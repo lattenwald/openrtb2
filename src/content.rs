@@ -73,8 +73,8 @@ pub struct Content<'a> {
 
     /// string array
     /// Array of IAB content categories that describe the content producer. Refer to List 5.1.
-    #[serde(default, skip_serializing_if = "Option::is_none")]
-    pub cat: Option<Vec<crate::ContentCategory>>,
+    #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
+    pub cat: Option<Vec<std::borrow::Cow<'a, str>>>,
 
     /// integer
     /// Production quality. Refer to List 5.13.
