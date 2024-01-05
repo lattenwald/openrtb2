@@ -119,7 +119,6 @@ pub struct Bid<'a> {
     /// string
     /// Language of the creative using ISO-639-1-alpha-2. The non- standard code “xx” may also be
     /// used if the creative has no linguistic content (e.g., a banner with just a company logo).
-    // TODO: ISO-639-1-alpha-2
     #[serde(borrow, default, skip_serializing_if = "Option::is_none")]
     pub language: Option<std::borrow::Cow<'a, str>>,
 
