@@ -2,7 +2,7 @@
 name = "openrtb2"
 version = "0.2.0"
 authors = ["mechiru <u9053u6d41@gmail.com>"]
-edition = "2018"
+edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "An implementation of OpenRTB 2.5 FINAL."
 repository = "https://github.com/mechiru/openrtb2"
