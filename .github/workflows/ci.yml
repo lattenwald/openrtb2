@@ -22,6 +22,7 @@ jobs:
           rustup set profile minimal
           rustup update --no-self-update $RUST_CHANNEL
           rustup component add --toolchain $RUST_CHANNEL rustfmt clippy
+          rustup override set $RUST_CHANNEL
         env:
           RUST_CHANNEL: ${{ matrix.channel }}
       - run: cargo build
