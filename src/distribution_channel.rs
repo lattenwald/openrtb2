@@ -2,6 +2,7 @@
 ///
 /// [`Site`]: ./struct.Site.html
 /// [`App`]: ./struct.App.html
+#[allow(clippy::large_enum_variant)]
 #[derive(serde::Serialize, serde::Deserialize, Debug, PartialEq, Clone)]
 #[serde(rename_all = "snake_case")]
 pub enum DistributionChannel<'a> {
